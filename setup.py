@@ -17,9 +17,8 @@ if sys.version_info[:2] <= (2, 6):
 
 setup(
     name='mammoth',
-    version='1.4.6',
+    version='1.4.6-withsimplefield',
     description='Convert Word documents from docx to simple and clean HTML and Markdown',
-    long_description=read("README"),
     author='Michael Williamson',
     author_email='mike@zwobble.org',
     url='http://github.com/mwilliamson/python-mammoth',
