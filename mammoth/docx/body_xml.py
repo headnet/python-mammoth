@@ -207,7 +207,10 @@ def _create_reader(numbering, content_types, relationships, styles, docx_file, f
         if num_id is None or level_index is None:
             return None
         else:
-            return numbering.find_level(num_id, level_index)
+            try:
+                return numbering.find_level(num_id, level_index)
+            except KeyError:
+                return None
 
     def _read_paragraph_indent(element):
         attributes = element.attributes
