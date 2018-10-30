@@ -165,6 +165,10 @@ def _create_reader(numbering, content_types, relationships, styles, docx_file, f
             complex_field_stack.append(complex_field)
         return _empty_result
     
+    def read_fld_simple(element):
+        text_node = element.find_child_or_null('w:r').find_child('w:t')
+        return  _success(documents.Text(_inner_text(text_node)))
+
     def parse_hyperlink_field_code(instr_text):
         result = re.match(r'\s*HYPERLINK "(.*)"', instr_text)
         if result is None:
@@ -464,6 +468,7 @@ def _create_reader(numbering, content_types, relationships, styles, docx_file, f
         "w:r": run,
         "w:p": paragraph,
         "w:fldChar": read_fld_char,
+        "w:fldSimple": read_fld_simple,
         "w:instrText": read_instr_text,
         "w:tab": tab,
         "w:noBreakHyphen": no_break_hyphen,
